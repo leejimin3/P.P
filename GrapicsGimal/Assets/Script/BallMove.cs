@@ -17,5 +17,15 @@ public class BallMove: MonoBehaviour
         ballRd = GetComponent<Rigidbody2D>();
         ballRd.AddForce(new Vector2(speed, speed * 0.7f));
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Death")
+        {
+            Destroy(GameObject.Find("Ball(Clone)"));
+            GameObject.Find("Canvas").transform.Find("GameOverPanel").gameObject.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+    }
 }
 
