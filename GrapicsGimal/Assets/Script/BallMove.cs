@@ -7,10 +7,10 @@ using UnityEngine;
 public class BallMove: MonoBehaviour
 
 {
-
+    public AudioSource Sound;
     private Rigidbody2D ballRd;         
 
-    float speed = 1000.0f;
+    float speed = 300.0f;
 
     public void Start()
     {
@@ -20,7 +20,8 @@ public class BallMove: MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.name == "Death")
+        Sound.Play();
+        if (collision.gameObject.name == "Death")
         {
             Destroy(GameObject.Find("Ball(Clone)"));
             GameObject.Find("Canvas").transform.Find("GameOverPanel").gameObject.SetActive(true);
